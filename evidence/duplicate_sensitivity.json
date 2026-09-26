@@ -1,0 +1,9 @@
+{
+  "policy": "First source row per ID is provisionally retained; conflicts require source-owner review.",
+  "denominator_orders": 1600,
+  "retained_interaction_orders": 460,
+  "retained_interaction_rate_pct": 28.75,
+  "all_recorded_interaction_orders": 463,
+  "all_recorded_interaction_rate_pct": 28.94,
+  "interpretation": "Alternative preservation scenario, not a corrected or owner-approved metric."
+}

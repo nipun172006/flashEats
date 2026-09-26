@@ -1,14 +1,16 @@
-# GitHub Setup
+# Updating the existing GitHub project
 
-The project is ready to upload as a repository. Run these commands from the project root after creating an empty repository on GitHub.
+The repository already exists at `https://github.com/nipun172006/flashEats`.
+To publish the revised files, copy the contents of the supplied `flashEats/` folder into your local clone, keeping the same paths. Review the changes before committing.
 
 ```bash
-git init
+git status
+git diff --stat
 git add .
-git commit -m "Finalize FlashEats Assessment 2"
-git branch -M main
-git remote add origin <YOUR_GITHUB_REPO_URL>
-git push -u origin main
+git commit -m "Clarify KPI assumptions and strengthen validation evidence"
+git push origin main
 ```
 
 The repository should remain accessible to the evaluator. The assignment requires the GitHub project to contain the README, source map, workflow/data model, retrieval and validation code, runnable pipeline, and final evidence table.
+
+The revised two-page submission is in `submission/10207_Nipun_Patel_Thumu.pdf`. After publishing, check the README, `evidence/verification.json` and the PDF on GitHub, then use that version for the demo.

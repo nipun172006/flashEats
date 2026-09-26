@@ -1,5 +1,5 @@
 metric,value,unit,definition
-Late Delivery Rate,56.39,%,late orders / KPI-eligible delivered orders
+Late Delivery Rate,56.39,%,late KPI-eligible delivered orders / KPI-eligible delivered orders
 Median Order-to-Pickup Time,26.07,min,median(pickup_at - created_at) among KPI-eligible delivered orders
 Median Pickup-to-Delivery Transit,47.23,min,median(actual_delivery_at - pickup_at) among KPI-eligible delivered orders
 Intervention Rate,16.25,%,orders with >=1 recorded intervention / all unique orders

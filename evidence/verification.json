@@ -1,0 +1,34 @@
+{
+  "logical_run_date": "2026-09-26",
+  "data_contract_tests": "PASS",
+  "unit_test_output": "test_bad_timestamp_fails_but_missing_is_handled_separately (test_data_contracts.DataContractTests.test_bad_timestamp_fails_but_missing_is_handled_separately) ... ok\ntest_conflicting_events_are_preserved_for_review (test_data_contracts.DataContractTests.test_conflicting_events_are_preserved_for_review) ... ok\ntest_dispatch_must_cover_each_order_once (test_data_contracts.DataContractTests.test_dispatch_must_cover_each_order_once) ... ok\ntest_exact_copies_are_not_labelled_conflicts (test_data_contracts.DataContractTests.test_exact_copies_are_not_labelled_conflicts) ... ok\ntest_join_fanout_is_rejected (test_data_contracts.DataContractTests.test_join_fanout_is_rejected) ... ok\ntest_missing_ids_fail (test_data_contracts.DataContractTests.test_missing_ids_fail) ... ok\ntest_threshold_boundary_and_missing_promise (test_data_contracts.DataContractTests.test_threshold_boundary_and_missing_promise) ... ok\n\n----------------------------------------------------------------------\nRan 7 tests in 0.028s\n\nOK\n",
+  "cases": [
+    {
+      "scenario": "normal_then_rerun",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "first_sha256": "6216ab28392f486880279d03eb32b83b072a132ceaac82dc71de5cfd7646113d",
+      "second_sha256": "6216ab28392f486880279d03eb32b83b072a132ceaac82dc71de5cfd7646113d",
+      "identical": true
+    },
+    {
+      "scenario": "missing_column",
+      "exit_code": 2,
+      "processed_files_unchanged": true,
+      "failed_check_saved": true
+    },
+    {
+      "scenario": "stale_data",
+      "exit_code": 2,
+      "processed_files_unchanged": true,
+      "failed_check_saved": true
+    },
+    {
+      "scenario": "duplicate_order",
+      "exit_code": 0,
+      "journey_unchanged": true
+    }
+  ]
+}

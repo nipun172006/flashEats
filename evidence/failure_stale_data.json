@@ -1,0 +1,103 @@
+{
+  "attempt_id": "20260926T115023585198Z_86c83a6d",
+  "run_date": "2026-09-26",
+  "chaos": "stale_data",
+  "started_at": "2026-09-26T11:50:23.585248+00:00",
+  "updated_at": "2026-09-26T11:50:26.120343+00:00",
+  "status": "FAILED",
+  "stage": "validate",
+  "error": "orders data is stale: latest_created_at=2025-08-28 23:33:00, age_days=394, allowed=60",
+  "validation": [
+    {
+      "check": "orders.required_columns",
+      "status": "PASS",
+      "detail": "10 required columns present"
+    },
+    {
+      "check": "dispatch.required_columns",
+      "status": "PASS",
+      "detail": "9 required columns present"
+    },
+    {
+      "check": "customer_interactions.required_columns",
+      "status": "PASS",
+      "detail": "4 required columns present"
+    },
+    {
+      "check": "customer_interactions.ids",
+      "status": "PASS",
+      "detail": "No missing join/event IDs"
+    },
+    {
+      "check": "customer_interactions.timestamp_parsing",
+      "status": "PASS",
+      "detail": "All supplied timestamps parse; nulls checked separately"
+    },
+    {
+      "check": "customer_interactions.interaction_id_uniqueness",
+      "status": "WARN",
+      "detail": "duplicate rows involved=6; unique_ids=494; exact_excess_rows=0; conflicting_ids=3; policy=first source row provisionally retained; repeated rows saved for review"
+    },
+    {
+      "check": "order_interventions.required_columns",
+      "status": "PASS",
+      "detail": "4 required columns present"
+    },
+    {
+      "check": "order_interventions.ids",
+      "status": "PASS",
+      "detail": "No missing join/event IDs"
+    },
+    {
+      "check": "order_interventions.timestamp_parsing",
+      "status": "PASS",
+      "detail": "All supplied timestamps parse; nulls checked separately"
+    },
+    {
+      "check": "order_interventions.intervention_id_uniqueness",
+      "status": "PASS",
+      "detail": "duplicate rows involved=0; unique_ids=260; exact_excess_rows=0; conflicting_ids=0; policy=first source row provisionally retained; repeated rows saved for review"
+    },
+    {
+      "check": "orders.ids",
+      "status": "PASS",
+      "detail": "No missing join/event IDs"
+    },
+    {
+      "check": "dispatch.ids",
+      "status": "PASS",
+      "detail": "No missing join/event IDs"
+    },
+    {
+      "check": "orders.timestamp_parsing",
+      "status": "PASS",
+      "detail": "All supplied timestamps parse; nulls checked separately"
+    },
+    {
+      "check": "dispatch.timestamp_parsing",
+      "status": "PASS",
+      "detail": "All supplied timestamps parse; nulls checked separately"
+    },
+    {
+      "check": "orders.order_id_uniqueness",
+      "status": "WARN",
+      "detail": "duplicate rows involved=6; unique_ids=1600; exact_excess_rows=0; conflicting_ids=3; policy=first source row provisionally retained; repeated rows saved for review"
+    },
+    {
+      "check": "orders.delivered_completion_timestamp",
+      "status": "WARN",
+      "detail": "delivered rows missing actual_delivery_at=37; missing_promised_eta=0; missing_created_or_pickup=0"
+    },
+    {
+      "check": "orders.timestamp_chronology",
+      "status": "WARN",
+      "detail": "promised_before_created=0; pickup_before_created=0; delivery_before_pickup=5"
+    },
+    {
+      "check": "orders.freshness",
+      "status": "FAIL",
+      "detail": "orders data is stale: latest_created_at=2025-08-28 23:33:00, age_days=394, allowed=60"
+    }
+  ],
+  "output_note": "Use processed files only when latest status is SUCCESS. Earlier files may remain after failure. Writes are atomic per file, not for the whole partition."
+}

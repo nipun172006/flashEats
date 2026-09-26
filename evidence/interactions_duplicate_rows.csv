@@ -1,0 +1,7 @@
+source_row,interaction_id,order_id,interaction_type,interaction_at,channel,detail,retained_in_baseline,duplicate_kind
+175,CI-0178,O01453,SUPPORT_TICKET,2026-08-15T21:04:00,support,driver_not_moving,True,conflicting_id
+176,CI-0179,O01454,SUPPORT_TICKET,2026-08-09T13:21:00,support,driver_not_moving,True,conflicting_id
+177,CI-0180,O01455,SUPPORT_TICKET,2026-08-16T19:11:00,support,ready_but_waiting,True,conflicting_id
+178,CI-0178,O01528,ORDER_STATUS_REFRESH,2026-08-08T17:44:00,customer_app,,False,conflicting_id
+179,CI-0179,O00618,ETA_VIEW,2026-08-26T20:24:00,customer_app,,False,conflicting_id
+180,CI-0180,O00949,HELP_OPENED,2026-08-17T12:12:00,customer_app,,False,conflicting_id

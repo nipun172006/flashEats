@@ -1,5 +1,7 @@
 # FlashEats — Assessment 2: Dependable Operational Data Pipeline
 
+Two-page submission: [`submission/10207_Nipun_Patel_Thumu.pdf`](submission/10207_Nipun_Patel_Thumu.pdf).
+
 ## Business situation
 
 FlashEats has order, dispatch, intervention and customer-interaction data coming from different systems. The problem is not just getting the data; it is figuring out what can actually be trusted before using it for an operations decision.
@@ -78,11 +80,12 @@ The pipeline is implemented in `pipeline/` and orchestrated by `run_pipeline.py`
 ```text
 api/                  mock HTTP API + dispatch JSON
 pipeline/             extraction, validation, cleaning, transformation, metrics, save
- database/             SQLite source data
+database/             SQLite source data
 data/                 CSV source data
- docs/                 source map, KPI contract, validation, model, findings
+docs/                 source map, KPI contract, validation, model, findings
 evidence/             checked-in final run evidence for the assessment
 config/               example environment configuration
+tests/                checks for conflicting IDs, timestamps and order grain
 run_pipeline.py       one-command orchestration
 requirements.txt      Python dependencies
 ```
@@ -120,6 +123,14 @@ The verified assessment run produced:
 
 The checked-in copies of the final evidence are in `evidence/` and the full run outputs are generated under `data/raw/` and `data/processed/` when the pipeline runs.
 
+## What I checked beyond the headline number
+
+The same eligible population gives **23.34%** when late means more than 10 minutes after ETA, compared with **56.39%** for any delay. The classroom stakeholders disagree about this definition, so I show both in [`docs/KPI_CONTRACT.md`](docs/KPI_CONTRACT.md).
+
+Some repeated IDs have conflicting content. I kept the first source row provisionally, saved both versions for review and reported the effect on customer-interaction coverage: **28.75% retained vs 28.94% if all recorded interactions are kept**. See [`docs/DUPLICATE_POLICY.md`](docs/DUPLICATE_POLICY.md).
+
+Eligible orders with interventions have a **57.96%** late rate, versus **56.08%** without. This is a follow-up signal, not a causal effect. The reasoning is in [`docs/FINDINGS.md`](docs/FINDINGS.md).
+
 ## Dependability checks
 
 ```bash
@@ -136,12 +147,17 @@ Expected behaviour:
 
 A normal run also proves API completeness (`1,600 / 1,600` across 16 pages), preserves raw inputs and supports idempotent reruns.
 
+Run the focused data-contract checks with `python -m unittest discover -s tests -v`.
+
+The validation report now includes **20 PASS / 4 WARN / 0 FAIL**. Every attempt saves a structured status, including failures. Check `logs/latest_status_YYYY-MM-DD.json` before consuming outputs: files from an older successful run can remain after failure. Output replacement is atomic per file, not across the whole partition.
+
 ## Final outputs from a run
 
 ```text
 data/raw/run_date=YYYY-MM-DD/
   local/*.csv
   dispatch/dispatch_page_*.json
+  exceptions/*_duplicate_rows.csv
 
 data/processed/run_date=YYYY-MM-DD/
   order_journey.csv
@@ -149,8 +165,12 @@ data/processed/run_date=YYYY-MM-DD/
   validation_report.json
   run_manifest.json
   evidence_table.csv
+  kpi_definition_comparison.csv
+  duplicate_sensitivity.json
 
 logs/pipeline_YYYY-MM-DD.log
+logs/latest_status_YYYY-MM-DD.json
+logs/attempts/<attempt_id>.json
 ```
 
 ## Known / Unknown / Assumption / Limitation
@@ -162,3 +182,11 @@ See [`docs/FINDINGS.md`](docs/FINDINGS.md), [`docs/KPI_CONTRACT.md`](docs/KPI_CO
 Operations can review a reproducible late-delivery baseline, see which part of the journey is taking time, and use interventions, reassignments, traffic/weather and customer interactions as follow-up signals.
 
 The analysis does **not** claim that any single factor caused the delay.
+
+## Classroom starting point and assessment work
+
+This project builds on the supplied FlashEats Class 8 pipeline and classroom datasets. The SQLite, CSV and dispatch JSON inputs are unchanged from that pack. The mock API, module structure and basic retry/chaos approach come from the teaching material.
+
+For this assessment, I extended the source and KPI reasoning, local raw snapshots, cross-source and chronology checks, event aggregation/deduplication, metric evidence and final documentation. The review also adds explicit conflict evidence, KPI-definition sensitivity, complete consumed-field schemas, timestamp parsing, order-coverage/grain checks and failed-attempt status records.
+
+The stakeholder definitions in `docs/classroom_metric_definitions.json` are copied from the supplied classroom pack. I use them as evidence for the disagreement, not as an approved KPI contract.

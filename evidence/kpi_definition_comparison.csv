@@ -1,0 +1,4 @@
+definition,population_orders,unclassifiable_orders,late_orders,late_rate_pct
+Operations: any delay > 0 min (assessment baseline),1495,0,843,56.39
+Support: delay > 10 min (same eligible population),1495,0,349,23.34
+Historical population + assumed > 0 min rule,1495,0,843,56.39

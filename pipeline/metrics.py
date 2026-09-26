@@ -51,3 +51,37 @@ def _group_rate(df: pd.DataFrame, group_col: str):
     grouped["late_rate_pct"] = (grouped["late_rate_pct"] * 100).round(2)
     grouped["median_delay_min"] = grouped["median_delay_min"].round(2)
     return grouped.to_dict(orient="records")
+
+
+def build_definition_comparison(journey):
+    eligible = journey[journey["kpi_eligible"]]
+    historical = journey[
+        journey["final_status"].eq("delivered") & journey["actual_delivery_at"].notna()
+    ]
+    rows = []
+    for name, population, threshold in [
+        ("Operations: any delay > 0 min (assessment baseline)", eligible, 0),
+        ("Support: delay > 10 min (same eligible population)", eligible, 10),
+        ("Historical population + assumed > 0 min rule", historical, 0),
+    ]:
+        unknown = int(population["promised_eta"].isna().sum())
+        late = int((population["delay_min"] > threshold).sum())
+        rows.append({"definition": name, "population_orders": len(population),
+                     "unclassifiable_orders": unknown, "late_orders": late,
+                     "late_rate_pct": _pct(late, len(population)) if not unknown else None})
+    return pd.DataFrame(rows)
+
+
+def build_duplicate_sensitivity(journey, raw_interactions):
+    all_orders = set(journey["order_id"])
+    represented_orders = len(set(raw_interactions["order_id"]) & all_orders)
+    retained_orders = int(journey["has_customer_interaction"].sum())
+    return {
+        "policy": "First source row per ID is provisionally retained; conflicts require source-owner review.",
+        "denominator_orders": len(journey),
+        "retained_interaction_orders": retained_orders,
+        "retained_interaction_rate_pct": _pct(retained_orders, len(journey)),
+        "all_recorded_interaction_orders": represented_orders,
+        "all_recorded_interaction_rate_pct": _pct(represented_orders, len(journey)),
+        "interpretation": "Alternative preservation scenario, not a corrected or owner-approved metric.",
+    }

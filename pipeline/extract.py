@@ -24,7 +24,8 @@ def extract_local_sources(project_root: Path, raw_output_dir: Path, logger):
         raise FileNotFoundError(f"Database not found: {db_path}")
 
     with sqlite3.connect(db_path) as con:
-        extracted = {table: pd.read_sql(f"SELECT * FROM {table}", con) for table in LOCAL_TABLES}
+        # The first-row baseline must have a defined source order.
+        extracted = {table: pd.read_sql(f"SELECT * FROM {table} ORDER BY rowid", con) for table in LOCAL_TABLES}
 
     data_dir = project_root / "data"
     extracted["interactions"] = pd.read_csv(data_dir / "customer_interactions.csv")

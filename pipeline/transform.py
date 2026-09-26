@@ -52,9 +52,9 @@ def build_order_journey(orders, interactions, interventions, dispatch, logger):
         "was_reassigned",
     ]]
 
-    journey = journey.merge(interaction_summary, on="order_id", how="left")
-    journey = journey.merge(intervention_summary, on="order_id", how="left")
-    journey = journey.merge(dispatch_small, on="order_id", how="left", suffixes=("", "_dispatch"))
+    journey = journey.merge(interaction_summary, on="order_id", how="left", validate="one_to_one")
+    journey = journey.merge(intervention_summary, on="order_id", how="left", validate="one_to_one")
+    journey = journey.merge(dispatch_small, on="order_id", how="left", suffixes=("", "_dispatch"), validate="one_to_one")
 
     for col in ["customer_interaction_count", "intervention_count"]:
         journey[col] = journey[col].fillna(0).astype(int)

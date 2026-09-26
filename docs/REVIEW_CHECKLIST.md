@@ -7,6 +7,7 @@ A reviewer can verify the project without reading every file.
 - `README.md`
 - `docs/SOURCE_MAP.md`
 - `docs/KPI_CONTRACT.md`
+- `docs/DUPLICATE_POLICY.md`
 
 ## 2. Follow the pipeline
 
@@ -36,3 +37,12 @@ Compare the run output with `evidence/` and confirm:
 ## 5. Check failure handling
 
 Run the three `--chaos` commands shown in the README and confirm the validation gate behaves as documented.
+
+Or run `python scripts/verify_run.py` to check the complete sequence and refresh the evidence snapshot. It tests normal/rerun equality, unchanged processed files on validation failure, and duplicate handling, and leaves the final run in its normal state. Also inspect `logs/latest_status_2026-09-26.json`.
+
+## 6. Read the limits alongside the results
+
+- First-row deduplication is provisional; conflicting rows are preserved.
+- The 60-day freshness rule is for this historical classroom analysis.
+- Output files are individually atomic, not a directory-level transaction.
+- The historical KPI comparison assumes the > 0 minute threshold; refunds cannot be excluded reliably from the selected source fields.

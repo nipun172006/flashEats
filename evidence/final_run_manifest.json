@@ -10,7 +10,7 @@
   },
   "dispatch_rows": 1600,
   "validation_summary": {
-    "PASS": 8,
+    "PASS": 20,
     "WARN": 4,
     "FAIL": 0
   }

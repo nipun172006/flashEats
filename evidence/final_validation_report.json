@@ -2,27 +2,82 @@
   {
     "check": "orders.required_columns",
     "status": "PASS",
-    "detail": "8 required columns present"
+    "detail": "10 required columns present"
   },
   {
-    "check": "orders.order_id_uniqueness",
-    "status": "WARN",
-    "detail": "duplicate rows involved=6; unique_order_ids=1600"
+    "check": "dispatch.required_columns",
+    "status": "PASS",
+    "detail": "9 required columns present"
+  },
+  {
+    "check": "customer_interactions.required_columns",
+    "status": "PASS",
+    "detail": "4 required columns present"
+  },
+  {
+    "check": "customer_interactions.ids",
+    "status": "PASS",
+    "detail": "No missing join/event IDs"
+  },
+  {
+    "check": "customer_interactions.timestamp_parsing",
+    "status": "PASS",
+    "detail": "All supplied timestamps parse; nulls checked separately"
   },
   {
     "check": "customer_interactions.interaction_id_uniqueness",
     "status": "WARN",
-    "detail": "duplicate rows involved=6"
+    "detail": "duplicate rows involved=6; unique_ids=494; exact_excess_rows=0; conflicting_ids=3; policy=first source row provisionally retained; repeated rows saved for review"
+  },
+  {
+    "check": "order_interventions.required_columns",
+    "status": "PASS",
+    "detail": "4 required columns present"
+  },
+  {
+    "check": "order_interventions.ids",
+    "status": "PASS",
+    "detail": "No missing join/event IDs"
+  },
+  {
+    "check": "order_interventions.timestamp_parsing",
+    "status": "PASS",
+    "detail": "All supplied timestamps parse; nulls checked separately"
   },
   {
     "check": "order_interventions.intervention_id_uniqueness",
     "status": "PASS",
-    "detail": "duplicate rows involved=0"
+    "detail": "duplicate rows involved=0; unique_ids=260; exact_excess_rows=0; conflicting_ids=0; policy=first source row provisionally retained; repeated rows saved for review"
+  },
+  {
+    "check": "orders.ids",
+    "status": "PASS",
+    "detail": "No missing join/event IDs"
+  },
+  {
+    "check": "dispatch.ids",
+    "status": "PASS",
+    "detail": "No missing join/event IDs"
+  },
+  {
+    "check": "orders.timestamp_parsing",
+    "status": "PASS",
+    "detail": "All supplied timestamps parse; nulls checked separately"
+  },
+  {
+    "check": "dispatch.timestamp_parsing",
+    "status": "PASS",
+    "detail": "All supplied timestamps parse; nulls checked separately"
+  },
+  {
+    "check": "orders.order_id_uniqueness",
+    "status": "WARN",
+    "detail": "duplicate rows involved=6; unique_ids=1600; exact_excess_rows=0; conflicting_ids=3; policy=first source row provisionally retained; repeated rows saved for review"
   },
   {
     "check": "orders.delivered_completion_timestamp",
     "status": "WARN",
-    "detail": "delivered rows missing actual_delivery_at=37"
+    "detail": "delivered rows missing actual_delivery_at=37; missing_promised_eta=0; missing_created_or_pickup=0"
   },
   {
     "check": "orders.timestamp_chronology",
@@ -33,11 +88,6 @@
     "check": "orders.freshness",
     "status": "PASS",
     "detail": "latest_created_at=2026-08-28 23:33:00; age_days=29; allowed=60"
-  },
-  {
-    "check": "dispatch.required_columns",
-    "status": "PASS",
-    "detail": "2 required columns present"
   },
   {
     "check": "dispatch.order_id_referential_integrity",
@@ -55,8 +105,18 @@
     "detail": "rows_with_unknown_order_id=0"
   },
   {
+    "check": "dispatch.order_coverage",
+    "status": "PASS",
+    "detail": "Exactly one dispatch row for each unique order"
+  },
+  {
     "check": "kpi.eligibility",
     "status": "PASS",
     "detail": "eligible=1495; cancelled_excluded=68; delivered_missing_actual=37; grain=unique_order_id"
+  },
+  {
+    "check": "journey.grain",
+    "status": "PASS",
+    "detail": "rows=1600; unique_order_ids=1600"
   }
 ]
