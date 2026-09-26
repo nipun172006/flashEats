@@ -1,0 +1,62 @@
+[
+  {
+    "check": "orders.required_columns",
+    "status": "PASS",
+    "detail": "8 required columns present"
+  },
+  {
+    "check": "orders.order_id_uniqueness",
+    "status": "WARN",
+    "detail": "duplicate rows involved=6; unique_order_ids=1600"
+  },
+  {
+    "check": "customer_interactions.interaction_id_uniqueness",
+    "status": "WARN",
+    "detail": "duplicate rows involved=6"
+  },
+  {
+    "check": "order_interventions.intervention_id_uniqueness",
+    "status": "PASS",
+    "detail": "duplicate rows involved=0"
+  },
+  {
+    "check": "orders.delivered_completion_timestamp",
+    "status": "WARN",
+    "detail": "delivered rows missing actual_delivery_at=37"
+  },
+  {
+    "check": "orders.timestamp_chronology",
+    "status": "WARN",
+    "detail": "promised_before_created=4; pickup_before_created=0; delivery_before_pickup=5"
+  },
+  {
+    "check": "orders.freshness",
+    "status": "PASS",
+    "detail": "latest_created_at=2026-08-28 23:33:00; age_days=29; allowed=60"
+  },
+  {
+    "check": "dispatch.required_columns",
+    "status": "PASS",
+    "detail": "2 required columns present"
+  },
+  {
+    "check": "dispatch.order_id_referential_integrity",
+    "status": "PASS",
+    "detail": "rows_with_unknown_order_id=0"
+  },
+  {
+    "check": "customer_interactions.order_id_referential_integrity",
+    "status": "PASS",
+    "detail": "rows_with_unknown_order_id=0"
+  },
+  {
+    "check": "order_interventions.order_id_referential_integrity",
+    "status": "PASS",
+    "detail": "rows_with_unknown_order_id=0"
+  },
+  {
+    "check": "kpi.eligibility",
+    "status": "PASS",
+    "detail": "eligible=1495; cancelled_excluded=68; delivered_missing_actual=37; grain=unique_order_id"
+  }
+]

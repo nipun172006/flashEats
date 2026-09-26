@@ -1,0 +1,103 @@
+{
+  "orders_in_journey": 1600,
+  "delivered_orders": 1532,
+  "cancelled_orders": 68,
+  "delivered_missing_actual_delivery_at": 37,
+  "kpi_eligible_orders": 1495,
+  "late_orders": 843,
+  "late_delivery_rate_pct": 56.39,
+  "median_late_delay_min": 8.03,
+  "median_order_to_pickup_min": 26.07,
+  "median_transit_min": 47.23,
+  "orders_with_intervention": 260,
+  "intervention_rate_pct": 16.25,
+  "orders_with_customer_interaction": 460,
+  "customer_interaction_rate_pct": 28.75,
+  "reassigned_orders": 95,
+  "reassignment_rate_pct": 5.94,
+  "late_rate_by_traffic": [
+    {
+      "traffic_bucket": "high",
+      "orders": 424,
+      "late_orders": 282,
+      "late_rate_pct": 66.51,
+      "median_delay_min": 3.99
+    },
+    {
+      "traffic_bucket": "low",
+      "orders": 360,
+      "late_orders": 178,
+      "late_rate_pct": 49.44,
+      "median_delay_min": -0.09
+    },
+    {
+      "traffic_bucket": "medium",
+      "orders": 588,
+      "late_orders": 302,
+      "late_rate_pct": 51.36,
+      "median_delay_min": 0.26
+    },
+    {
+      "traffic_bucket": "severe",
+      "orders": 123,
+      "late_orders": 81,
+      "late_rate_pct": 65.85,
+      "median_delay_min": 4.26
+    }
+  ],
+  "late_rate_by_weather": [
+    {
+      "weather_bucket": "clear",
+      "orders": 1192,
+      "late_orders": 635,
+      "late_rate_pct": 53.27,
+      "median_delay_min": 0.78
+    },
+    {
+      "weather_bucket": "heavy_rain",
+      "orders": 72,
+      "late_orders": 53,
+      "late_rate_pct": 73.61,
+      "median_delay_min": 6.63
+    },
+    {
+      "weather_bucket": "rain",
+      "orders": 231,
+      "late_orders": 155,
+      "late_rate_pct": 67.1,
+      "median_delay_min": 4.27
+    }
+  ],
+  "late_rate_by_intervention": [
+    {
+      "has_intervention": false,
+      "orders": 1250,
+      "late_orders": 701,
+      "late_rate_pct": 56.08,
+      "median_delay_min": 1.38
+    },
+    {
+      "has_intervention": true,
+      "orders": 245,
+      "late_orders": 142,
+      "late_rate_pct": 57.96,
+      "median_delay_min": 1.45
+    }
+  ],
+  "late_rate_by_reassignment": [
+    {
+      "was_reassigned": false,
+      "orders": 1404,
+      "late_orders": 791,
+      "late_rate_pct": 56.34,
+      "median_delay_min": 1.37
+    },
+    {
+      "was_reassigned": true,
+      "orders": 91,
+      "late_orders": 52,
+      "late_rate_pct": 57.14,
+      "median_delay_min": 2.38
+    }
+  ]
+}

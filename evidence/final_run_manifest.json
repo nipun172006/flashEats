@@ -1,0 +1,17 @@
+{
+  "run_date": "2026-09-26",
+  "inputs": {
+    "orders": 1603,
+    "customers": 900,
+    "drivers": 120,
+    "restaurants": 60,
+    "interactions": 497,
+    "interventions": 260
+  },
+  "dispatch_rows": 1600,
+  "validation_summary": {
+    "PASS": 8,
+    "WARN": 4,
+    "FAIL": 0
+  }
+}
