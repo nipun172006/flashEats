@@ -1,6 +1,5 @@
 # FlashEats — Assessment 2: Dependable Operational Data Pipeline
 
-Two-page submission: [`submission/10207_Nipun_Patel_Thumu.pdf`](submission/10207_Nipun_Patel_Thumu.pdf).
 
 ## Business situation
 
